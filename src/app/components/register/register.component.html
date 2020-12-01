@@ -1,0 +1,65 @@
+<div class="container mt-5">
+    <div class="row mt-5">
+        <div class="col-12 my-5">
+            <div class="alert alert-success" *ngIf="status == 'success'">
+                <button type="button" class="close" data-dismiss="alert">&times;</button> Registro Exitoso!!
+            </div>
+
+            <div class="alert alert-danger" *ngIf="status == 'error'">
+                <button type="button" class="close" data-dismiss="alert">&times;</button> El Registro no ha podido completarse, intentalo de nuevo!!
+            </div>
+
+            <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="my-5">
+                <p>
+                    <label for="">Nombre</label>
+                    <input id="name" type="text" name="name" #name="ngModel" [(ngModel)]="register.name" class="form-control" required/>
+                    <span *ngIf="!name.valid && name.touched">
+                El campo nombre es obligatorio!!
+            </span>
+
+                </p>
+
+                <p>
+                    <label for="">Apellidos</label>
+                    <input id="family_name" type="text" name="family_name" #family_name="ngModel" [(ngModel)]="register.family_name" class="form-control" required/>
+                    <span *ngIf="!family_name.valid && family_name.touched">
+                El campo Apellido es obligatorio!!
+            </span>
+                </p>
+
+                <p>
+                    <label for="">Correo electronico</label>
+                    <input type="email" name="email" #email="ngModel" [(ngModel)]="register.email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+
+                </p>
+
+                <p>
+                    <label for="">Telefono</label>
+                    <input id="phone" type="text" name="phone" #surname="ngModel" [(ngModel)]="register.phone" class="form-control" maxlength="10" />
+
+                </p>
+
+
+                <label for="">Programa</label>
+
+                <div class="form-group label-floating">
+                    <select class="selectpicker form-control" name="program" #program="ngModel" [(ngModel)]="register.program">
+                <option *ngFor="let program of programs" value="{{program.id}}">
+                    {{program.name}}
+                </option>
+            </select>
+                </div>
+
+
+
+                <p>
+                    <label for="">Comentario</label>
+                    <input type="text" name="comment" #surname="ngModel" [(ngModel)]="register.comment" class="form-control" required/>
+
+                </p>
+
+                <input type="submit" value="{{title}}" class="btn btn-success" [disabled]="!registerForm.form.valid">
+            </form>
+        </div>
+    </div>
+</div>

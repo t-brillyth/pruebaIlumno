@@ -1,0 +1,13 @@
+<div class="container mt-5">
+  <div class="row">
+      <div class="card-deck mt-5">
+          <div class="card mb-4 mx-4" *ngFor="let new of news">
+              <div class="card-body">
+                  <h5 class="card-title">{{new.title}}</h5>
+                  <p class="card-text">{{new.body}}</p>
+                  <a [routerLink]="['/noticias', new.id]" class="btn btn-primary">Ver más</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
